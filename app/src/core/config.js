@@ -1,0 +1,1 @@
+export { CONFIG, debug } from './config.ts';

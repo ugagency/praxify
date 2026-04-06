@@ -1,0 +1,10 @@
+.git
+.gitignore
+node_modules
+app/node_modules
+*.md
+docker-compose.yml
+Dockerfile
+.dockerignore
+.gemini
+arquivos_olds

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PRAXIFY - Inteligência Jurídica</title>
+  <link rel="stylesheet" href="./src/styles/landing.css">
+  <!-- Font Inter & Clash Grotesk -->
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@400,500,600,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container header-container">
+      <div class="logo">
+        <div class="logo-icon"></div>
+        <span class="logo-text">PRAXIFY</span>
+      </div>
+      <nav class="nav">
+        <a href="#features">Recursos</a>
+        <a href="#pricing">Preços</a>
+        <a href="/src/login.html" class="btn-link">Já sou cliente</a>
+        <button onclick="openLeadModal()" class="btn-primary">Testar Grátis</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-content">
+      <h1>Advogar é difícil.<br><span class="text-gradient">Perder prazos é fatal.</span></h1>
+      <p>Sua inteligência jurídica que nunca dorme. O PRAXIFY automatiza o controle de processos e garante que você
+        nunca mais perca um prazo.</p>
+      <div class="hero-actions">
+        <button onclick="openLeadModal()" class="btn-primary btn-large">Testar Grátis Agora</button>
+        <a href="#features" class="btn-secondary btn-large">Ver em ação</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features" class="features">
+    <div class="container">
+      <h2>Por que usar o PRAXIFY?</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h3>⏱️ Nunca perca prazos</h3>
+          <p>Monitoramento automático de movimentações e prazos judiciais.</p>
+        </div>
+        <div class="feature-card">
+          <h3>📂 Organização total</h3>
+          <p>Processos, documentos, tarefas e histórico em um só lugar.</p>
+        </div>
+        <div class="feature-card">
+          <h3>🧠 Inteligência Artificial</h3>
+          <p>Insights automáticos, geração de peças e alertas inteligentes.</p>
+        </div>
+        <div class="feature-card">
+          <h3>📈 Escalável</h3>
+          <p>Ideal para advogados, escritórios e departamentos jurídicos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing" class="pricing">
+    <div class="container">
+      <h2>O Software Jurídico mais completo</h2>
+
+      <!-- Pricing Toggle -->
+      <div class="pricing-toggle-container">
+        <span id="label-monthly" class="toggle-label active">Mensal</span>
+        <button id="billing-toggle" class="toggle-switch" aria-pressed="false" onclick="toggleBilling()">
+          <span class="toggle-thumb"></span>
+        </button>
+        <span id="label-annual" class="toggle-label">Anual</span>
+        <span id="saving-badge" class="saving-badge hidden">20% OFF</span>
+      </div>
+
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <h3>Plano Jovem Advogado</h3>
+          <p class="description">Foco no que realmente importa.</p>
+          <div class="price">R$ 49.90<small>/mês</small></div>
+          <ul>
+            <li>Gestão de prazos e calendário</li>
+            <li>Calculadora de prazos</li>
+            <li>Assinatura digital (15 docs/mês)</li>
+          </ul>
+          <button onclick="openLeadModal()" class="btn-secondary btn-full">Iniciar agora</button>
+        </div>
+        <div class="pricing-card featured">
+          <h3>Plano Essencial</h3>
+          <p class="description">O melhor software jurídico do mercado.</p>
+          <div class="price">R$ 274.90<small>/mês</small></div>
+          <ul>
+            <li>Assinatura digital (Ilimitada)</li>
+            <li>Inteligência Artificial Avançada</li>
+            <li>Gestão Financeira Completa</li>
+            <li>API Aberta</li>
+          </ul>
+          <button onclick="openLeadModal()" class="btn-primary btn-full">Iniciar agora</button>
+        </div>
+        <div class="pricing-card">
+          <h3>Plano Sociedade Jurídica</h3>
+          <p class="description">Eleve seu escritório.</p>
+          <div class="price">R$ 164.90<small>/mês</small></div>
+          <ul>
+            <li>Tudo do Jovem Advogado</li>
+            <li>Assinatura digital (40 docs/mês)</li>
+            <li>Integração Google Agenda</li>
+          </ul>
+          <button onclick="openLeadModal()" class="btn-secondary btn-full">Iniciar agora</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="features"
+    style="background: linear-gradient(to right, rgba(0,217,255,0.05), rgba(16,185,129,0.05)); border-top: 1px solid var(--border);">
+    <div class="container" style="text-align: center;">
+      <h2>Pronto para elevar seu controle jurídico?</h2>
+      <p style="margin-bottom: 2rem; color: var(--text-light);">Solicite uma demonstração e veja o PRAXIFY em ação.
+      </p>
+      <button onclick="openLeadModal()" class="btn-primary btn-large">Quero uma demonstração</button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 PRAXIFY — Plataforma Jurídica Inteligente</p>
+    </div>
+  </footer>
+
+  <!-- MODAL -->
+  <div id="leadModal" class="modal-overlay hidden">
+    <div class="modal">
+      <button class="close-modal" onclick="closeLeadModal()">×</button>
+      <h3 style="text-align: center;">Teste Grátis o PRAXIFY</h3>
+      <p style="text-align: center;">Preencha seus dados para acessar o sistema de demonstração.</p>
+      <form id="leadForm">
+        <div class="form-group">
+          <label>Nome Completo</label>
+          <input type="text" name="nome" required placeholder="Seu nome">
+        </div>
+        <div class="form-group">
+          <label>Email Profissional</label>
+          <input type="email" name="email" required placeholder="seu@email.com">
+        </div>
+        <div class="form-group">
+          <label>Telefone / WhatsApp</label>
+          <input type="tel" name="telefone" required placeholder="(00) 00000-0000">
+        </div>
+        <button type="submit" class="btn-primary btn-full">Acessar Demonstração</button>
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="landing.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,127 @@
+/* THEME VARIABLES */
+:root {
+    /* default = DARK THEME */
+    --bg-body: #0a192f;
+    --bg-darker: #020c1b;
+    --bg-panel: rgba(17, 34, 64, 0.85);
+    --bg-surface: rgba(255, 255, 255, 0.06); /* for inputs/fields in dark */
+
+    --primary: #64ffda;
+    /* Cyan Neon */
+    --primary-dim: rgba(100, 255, 218, 0.1);
+    --accent: #00d4ff;
+
+    --text-main: #e6f1ff;
+    /* Bright white/blueish for body text */
+    --text-muted: #8892b0;
+    /* Muted slate for secondary labels */
+    --text-dim: #4a5780;
+    /* Very dim for placeholders */
+
+    --border-color: rgba(255, 255, 255, 0.1);
+
+    /* Semantic Status */
+    --success: #64ffda;
+    --danger: #ff5555;
+    --warning: #ffbd2e;
+    --info: #00d4ff;
+
+    /* Legacy Maps */
+    --bg-dark: var(--bg-body);
+    --text-light: var(--text-main);
+
+    /* Variables for app/index.css compatibility */
+    --water-green: var(--text-main);
+    /* Primary text in dark mode */
+    --gold: var(--primary);
+    /* Used for selected/active items */
+    --olive: var(--bg-panel);
+
+    --table-stripe: rgba(255, 255, 255, 0.04);
+}
+
+[data-theme="light"] {
+    --bg-body: #f0f4f8;
+    /* Light grayish blue */
+    --bg-darker: #d9e2ec;
+    /* For deep backgrounds, visible dividers */
+    --bg-panel: #ffffff;
+    /* White cards */
+    --bg-surface: rgba(0, 0, 0, 0.04); /* for inputs/fields in light */
+
+    --primary: #00796b;
+    /* Dark Teal (readable on white) */
+    --primary-dim: rgba(0, 121, 107, 0.1);
+    --accent: #2979ff;
+
+    --text-main: #102a43;
+    /* Dark navy text */
+    --text-muted: #486581;
+    /* Dark gray/blue — readable on white */
+    --text-dim: #829ab1;
+    /* Very light for hints */
+
+    --border-color: #d9e2ec;
+
+    --success: #00796b;
+    --danger: #d32f2f;
+    --warning: #f57f17;
+    --info: #1976d2;
+
+    /* Maps */
+    --bg-dark: var(--bg-body);
+    --text-light: var(--text-main);
+
+    --water-green: var(--text-main);
+    /* Dark text on light bg */
+    --gold: var(--primary);
+    --olive: var(--bg-panel);
+
+    --table-stripe: rgba(0, 0, 0, 0.04);
+}
+
+html {
+    font-size: 14px;
+}
+
+body {
+    margin: 0;
+    background: var(--bg-body);
+    color: var(--text-main);
+    font-family: "Inter", "Segoe UI", sans-serif;
+    height: 100vh;
+    overflow: hidden;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* CUSTOM SCROLLBAR - High Contrast */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.8);
+}
+
+[data-theme="light"] ::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.7);
+}
