@@ -3,14 +3,19 @@ import { useNavigate } from "react-router-dom";
 import type { PrazoItem } from "../types/processoDetalhe.types";
 
 import { openPrazoDetailsModal } from "../../../../components/modals/prazoDetailsModal";
+import { openPrazoEditModal } from "../../../../components/modals/prazoEditModal";
+import type { Usuario } from "../../list/types/processos.types";
 
 type Props = {
     prazos: PrazoItem[];
     processoId: number;
     processoLabel?: string;
+    usuarios?: Usuario[];
+    onReload?: () => void;
+    escritorioId?: number | string;
 };
 
-export const ProcessoPrazosCard: React.FC<Props> = ({ prazos, processoId, processoLabel }) => {
+export const ProcessoPrazosCard: React.FC<Props> = ({ prazos, processoId, processoLabel, usuarios, onReload, escritorioId }) => {
     const navigate = useNavigate();
 
     const [openAll, setOpenAll] = useState(false);
@@ -53,31 +58,54 @@ export const ProcessoPrazosCard: React.FC<Props> = ({ prazos, processoId, proces
             onOpenProcess: () => navigate(`/processo/${processoId}`),
         });
 
-        /**
-         * Como o openPrazoDetailsModal não expõe callback de close,
-         * a gente “observa” o DOM para detectar quando ele some e
-         * então libera o modal de lista novamente.
-         *
-         * Isso evita fechar o modal de lista e mantém os dois abertos.
-         */
         const start = Date.now();
         const timer = window.setInterval(() => {
-            // SweetAlert2 normalmente cria .swal2-container
             const swalContainer = document.querySelector(".swal2-container");
             const stillThere = !!swalContainer;
-
-            // Se não existe mais, detalhe foi fechado
             if (!stillThere) {
                 window.clearInterval(timer);
                 setDetailOpen(false);
+                onReload?.();
             }
-
-            // fallback: não fica preso se algo der errado
             if (Date.now() - start > 60_000) {
                 window.clearInterval(timer);
                 setDetailOpen(false);
             }
         }, 300);
+    };
+
+    const handleAdd = () => {
+        const processosList: any[] = [
+            {
+                id: processoId,
+                numero_autos: processoLabel ?? processoId,
+                numero: processoLabel ?? processoId,
+            },
+        ];
+
+        openPrazoEditModal({
+            processosList,
+            usuariosList: usuarios,
+            prazo: {
+                processo: String(processoId),
+                status: "PENDENTE",
+                data_fatal: new Date().toISOString(),
+                tarefa: "",
+                responsavel: "",
+                tipo: true
+            },
+            onSubmit: async (payload) => {
+                try {
+                    const { createPrazo } = await import('../../../../services/supabase');
+                    const res = await createPrazo(payload);
+                    if (res.error) return { error: res.error };
+                    onReload?.();
+                    return { error: null };
+                } catch (err) {
+                    return { error: err };
+                }
+            }
+        });
     };
 
     // Fechar o modal “Ver todos” no ESC (somente se não estiver com detalhe aberto)
@@ -115,24 +143,42 @@ export const ProcessoPrazosCard: React.FC<Props> = ({ prazos, processoId, proces
         <>
             <div style={cardSkin}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 10 }}>
-                    <h4 style={{ color: "var(--text-main)", margin: 0, fontSize: "1rem", fontWeight: 900 }}>
-                        ⏰ Prazos ativos do processo
-                    </h4>
+                    <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                        <h4 style={{ color: "var(--text-main)", margin: 0, fontSize: "1rem", fontWeight: 900 }}>
+                            ⏰ Prazos ativos
+                        </h4>
+                        <span
+                            style={{
+                                padding: "0.18rem 0.6rem",
+                                borderRadius: 999,
+                                border: "1px solid rgba(239,68,68,0.35)",
+                                background: "rgba(239,68,68,0.14)",
+                                color: "var(--text-main)",
+                                fontWeight: 900,
+                                fontSize: "0.75rem",
+                            }}
+                            title="Quantidade de prazos"
+                        >
+                            {prazosOrdenados.length}
+                        </span>
+                    </div>
 
-                    <span
+                    <button
+                        onClick={handleAdd}
                         style={{
-                            padding: "0.18rem 0.6rem",
-                            borderRadius: 999,
-                            border: "1px solid rgba(239,68,68,0.35)",
-                            background: "rgba(239,68,68,0.14)",
-                            color: "var(--text-main)",
-                            fontWeight: 900,
+                            padding: "0.35rem 0.7rem",
+                            borderRadius: 8,
+                            background: "rgba(16,185,129,0.15)",
+                            border: "1px solid rgba(16,185,129,0.35)",
+                            color: "#10b981",
                             fontSize: "0.75rem",
+                            fontWeight: 900,
+                            cursor: "pointer",
+                            transition: "all 0.2s"
                         }}
-                        title="Quantidade de prazos"
                     >
-                        {prazosOrdenados.length}
-                    </span>
+                        + Novo
+                    </button>
                 </div>
 
                 {prazosOrdenados.length === 0 ? (
@@ -273,9 +319,26 @@ export const ProcessoPrazosCard: React.FC<Props> = ({ prazos, processoId, proces
                                 <h3 style={{ margin: 0, color: "var(--text-main)", fontSize: "1.05rem", fontWeight: 900 }}>
                                     Prazos do processo {processoLabel ? `#${processoLabel}` : `#${processoId}`}
                                 </h3>
-                                <span style={{ color: "var(--text-muted)", fontSize: "0.85rem" }}>
-                                    Total: {prazosOrdenados.length}
-                                </span>
+                                <div style={{ display: "flex", alignItems: "center", gap: 10, marginTop: 4 }}>
+                                    <span style={{ color: "var(--text-muted)", fontSize: "0.85rem" }}>
+                                        Total: {prazosOrdenados.length}
+                                    </span>
+                                    <button
+                                        onClick={handleAdd}
+                                        style={{
+                                            padding: "0.2rem 0.5rem",
+                                            borderRadius: 6,
+                                            background: "rgba(16,185,129,0.15)",
+                                            border: "1px solid rgba(16,185,129,0.35)",
+                                            color: "#10b981",
+                                            fontSize: "0.7rem",
+                                            fontWeight: 900,
+                                            cursor: "pointer"
+                                        }}
+                                    >
+                                        + Adicionar Novo
+                                    </button>
+                                </div>
                             </div>
 
                             <button

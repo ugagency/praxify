@@ -72,7 +72,7 @@ export const CONFIG = {
     // API Externa - IA
     API: {
         GEMINI_KEY: import.meta.env.VITE_GEMINI_KEY || "",
-        GEMINI_MODEL: "gemini-2.0-flash", // Modelo rápido e econômico
+        GEMINI_MODEL: "gemini-2.5-flash", // Versao atualizada, veloz e de baixo custo
         GEMINI_ENDPOINT: "https://generativelanguage.googleapis.com/v1beta/models"
     },
 

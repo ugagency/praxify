@@ -1,0 +1,70 @@
+﻿Guia de uso da Plataforma PRAXIFY
+Bem-vindo(a) ao PRAXIFY! Este guia prático mostrará como realizar as tarefas mais importantes do seu dia a dia logo no primeiro contato: desde o momento em que um cliente entra no escritório até a emissão da sua petição rascunhada por nossa Inteligência Artificial Estratégica.
+
+
+  
+
+
+1. Como Acessar a Plataforma
+O primeiro passo é entrar com segurança no seu sistema.
+1. Acesse o link oficial fornecido ao seu escritório e clique “Já sou Cliente”.
+2. Na tela inicial, informe seu E-mail e Senha.
+3. Clique no botão azul-ciano Entrar.  
+Dica: Caso a sua conta ainda não exista e seja sua primeira vez, clique em Criar Conta para se registrar informando as credenciais do seu email.
+
+
+
+
+2. Navegação Inicial (Dashboard)
+Após logar na plataforma, você terá acesso imediato à página de Dashboard. A partir dessa tela, você tem uma visão completa da saúde de seu escritório, quantidade de Processos Ativos, total de Prazos próximos, número de Clientes consolidados, entre outros. Use o menu posicionado à lateral da tela para acessar cada uma das áreas do sistema a qualquer hora.
+  
+
+O que você encontra no Dashboard:
+   * Painel Superior de Buscas e Filtros:
+   * Pesquisar compromissos: Uma barra de busca onde você digita e encontra o prazo imediatamente.
+   * Filtros de Mês/Ano: Os seletores de data. O sistema conta também com o filtro inteligente "Exibindo apenas meses com eventos", o que facilita pular direto para meses em que você tenha despachos, audiências ou prazos.
+   * Botão [+ Novo Compromisso]: Botão à direita utilizado para agendar um novo prazo ou evento manualmente (definindo a data fatal, responsável e tarefa).
+   * O Calendário Dinâmico:
+   * O coração da tela principal. Exibe todos os seus compromissos divididos nos campos dos dias.
+   * No topo do calendário, você pode navegar clicando em Hoje, < (Anterior), > (Próximo) e também alterar a exibição de Mês para Semana, Dia ou estilo Agenda.
+   * A Lógica de Cores da Inteligência: O sistema etiqueta visualmente cada chip do seu calendário usando as seguintes cores:
+   * Azul-ciano (Padrão): Representa um compromisso/prazo ainda dentro da validade (está no prazo e não está concluído).
+   * Vermelho (Atrasado): Acende um alerta crítico. Representa um prazo cuja "DATA FATAL" infelizmente já passou de hoje e ele ainda não foi marcado como "Feito".
+   * Verde (Concluído): Aparece caso o evento tenha o status alterado para "Feito", indicando paz e dever cumprido!
+   * Painel inferior: Tarefas Urgentes / Vencidas:
+   * Abaixo da tabela, uma segunda pílula de inteligência mostra sua lista de prioridades gritantes. A coluna Ação possui o ícone tático do "olho", clicando ali você abre os detalhes e altera o status antes que vire revelia!
+3. Cadastrando um Novo Cliente
+Antes de registrar o caso judicial e o processo em si, você precisa cadastrar o autor ou parte.
+   1. No menu principal (lateral), clique na opção Clientes.
+   2. Na parte de cima da nova tela, localize e clique no botão azul + Novo Cliente.
+   3. Um formulário vai pular na sua tela. Nele temos dois campos principais:
+   * Nome Completo (Preenchimento Obrigatório).
+   * CPF ou CNPJ (Opcional) — o sistema formata automaticamente os números sem que você se preocupe.
+   4. Clique no botão verde Salvar. Seu cliente já está no banco de dados, pronto para ganhar processos!
+  
+
+4. Cadastrando um Caso e o Processo
+Com o cliente já existindo no seu escritório digital, podemos criar o caso.
+   1. Navegue no menu lateral e clique em Processos.
+   2. Vá ao botão principal no canto da tela de nome + Novo Processo.
+   3. O sistema pedirá as informações chave do seu caso judicial. Busque o nome do cliente recém-cadastrado na lista.
+   4. Preencha demais detalhes disponíveis no ato (como Título, Status inicial ou Comarca)..
+   5. Agora, se clicar no processo que gerou, você poderá incluir eventos, anotações de reunião ou acessar os Detalhes e Ferramentas desse caso.  
+
+
+5. Gerador de Petição Automática com Inteligência Artificial ⚡
+O momento onde você ganha o seu tempo de volta! Nossa Inteligência Estratégica constrói a estrutura, os fundamentos jurídicos básicos e a disposição para que você apenas precise lapidar o trabalho bruto. É necessário ter alguns fatos (anotações de primeiro contato, acolhimento do caso) para a IA funcionar.
+      1. Acesse a tela de Processos, localize o processo/caso que você quer trabalhar e clique nele para abri-lo (ver os Detalhes).
+      2. Na mesma tela de detalhes do processo, clique no botão para Gerar Petição IA (marcado com símbolo ⚡ e título verde).
+      3. Se você já tem alguma etapa marcada na linha do tempo (Timeline) chamada "Reunião" ou "Acolhimento" a qual foi adicionada uma transcrição ou relato, a IA tentará buscar aquilo de forma imediata! Senão, não tem problema.
+      4. Vai abrir um painel negro chamado "Gerador de Petição IA".
+      5. Ache no meio da tela o grande campo chamado "FATOS / BASE PARA ELABORAÇÃO". Neste quadrado, escreva resumidamente o caso, os fatos ou simplesmente cole suas notas de acolhimento.
+⚠️ Atenção: O relato deve ter mais de 20 caracteres e precisa ter informações do que a pessoa viveu e quer solicitar, para que a IA consiga construir um documento rico.
+      6. Clique no botão grande e verde com os dizeres: 🚀 GERAR AGORA.
+      7. Aguarde por uns instantes enquanto nossos computadores lêem as leis jurisprudenciais que atrelam ao sentido do texto.
+      8. Pronto! No quadro da interface aparecerá a MINUTA GERADA PELA IA. Leia.
+      9. Ficou ideal? Você pode clicar no botão pequeno de 📋 COPIAR TEXTO ou simplesmente clicar, no canto inferior direito, em 💾 SALVAR EM DOCUMENTOS.
+________________
+
+
+Pronto! Você acaba de cumprir com tecnologia o que te tomaria ao menos 45 minutos da sua rotina padrão administrativa de escritório. O PRAXIFY trabalha junto com você.

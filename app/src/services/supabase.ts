@@ -336,7 +336,7 @@ export async function uploadArquivo(file: File, metadata: Record<string, unknown
         // Sanitizar nome do arquivo (remover acentos e caracteres especiais)
         const cleanName = file.name.normalize('NFD').replace(/[\u0300-\u036f]/g, "").replace(/[^a-zA-Z0-9.-]/g, "_");
         const fileName = `${Date.now()}_${cleanName}`;
-        const filePath = `${metadata.escritorio_id}/${metadata.processo}/${fileName}`;
+        const filePath = `${metadata.escritorio_id}/${metadata.processo_id || 'geral'}/${fileName}`;
 
         // Upload para Supabase Storage
         const { error: uploadError } = await client.storage
@@ -354,7 +354,7 @@ export async function uploadArquivo(file: File, metadata: Record<string, unknown
         const arquivo = {
             ...metadata,
             url: urlData.publicUrl,
-            descricao: file.name
+            descricao: metadata.descricao || file.name
         };
 
         const { data, error } = await insert(CONFIG.TABLES.ARQUIVOS, arquivo);

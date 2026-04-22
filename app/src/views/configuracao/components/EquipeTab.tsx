@@ -1,5 +1,6 @@
 import React from 'react';
 import type { FormUsuario, ModalMode, Usuario } from '../Configuracoes';
+import { useAppStore } from '../../../core/store';
 
 interface Props {
     usuarios: Usuario[];
@@ -130,6 +131,13 @@ export const EquipeTab: React.FC<Props> = ({
     onSubmitResetPassword
 }) => {
     const [grupos, setGrupos] = React.useState<{ id: string, nome: string }[]>([]);
+    const currentUser = useAppStore(state => state.user);
+    const isCurrentUserAdmin = currentUser?.role === 'ADMIN';
+
+    // Se o usuario ativo não for admin, ele não pode criar outros admins
+    const availableRoles = isCurrentUserAdmin
+        ? ROLE_OPTIONS
+        : ROLE_OPTIONS.filter(r => r.value !== 'ADMIN');
 
     React.useEffect(() => {
         const fetchGrupos = async () => {
@@ -695,7 +703,7 @@ export const EquipeTab: React.FC<Props> = ({
                                                     onChange={(e) => onChangeFormUser({ ...formUser, role: e.target.value })}
                                                     style={modalStyles.input}
                                                 >
-                                                    {ROLE_OPTIONS.map((option) => (
+                                                    {availableRoles.map((option) => (
                                                         <option key={option.value} value={option.value}>
                                                             {option.label}
                                                         </option>

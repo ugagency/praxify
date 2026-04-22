@@ -234,13 +234,16 @@ export const ClienteModalTabAcolhimento: React.FC<{
         }
 
         try {
+            showLoading("Estruturando com IA...", "Aguarde enquanto a inteligência artificial processa o texto.");
             // @ts-expect-error (JS module)
             const m = await import("../../../services/ia_processing.js");
             const resultado = await m.processarTranscricaoComIA(acolhimento.relato);
             const textoFormatado = m.formatarResultadoParaTexto(resultado);
             setAcolhimento((prev) => ({ ...prev, relato: textoFormatado }));
+            closeAlert();
             showAlert("Sucesso", "Texto estruturado com sucesso pela IA!", "success");
         } catch (e: unknown) {
+            closeAlert();
             showAlert("Erro", "Erro ao processar com IA: " + (e as Error).message, "error");
         }
     };

@@ -1,8 +1,9 @@
-﻿import React from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useAppStore } from '../../core/store';
 import { openPrazoDetailsModal } from '../../components/modals/prazoDetailsModal';
+import { openPrazoEditModal } from '../../components/modals/prazoEditModal';
 
 import { usePrazosData } from './hooks/usePrazosData';
 import { usePrazosState, type SortField } from './hooks/usePrazosState';
@@ -15,7 +16,7 @@ export const Prazos: React.FC = () => {
     const navigate = useNavigate();
     const { escritorio } = useAppStore();
 
-    const { loading, prazos, processosList, concluirPrazo, excluirPrazo } = usePrazosData({ escritorio });
+    const { loading, prazos, usuarios, processosList, reload, concluirPrazo, excluirPrazo } = usePrazosData({ escritorio });
 
     const {
         filtro,
@@ -54,6 +55,24 @@ export const Prazos: React.FC = () => {
         });
     };
 
+    const handleAdd = () => {
+        openPrazoEditModal({
+            processosList,
+            usuariosList: usuarios,
+            onSubmit: async (payload) => {
+                try {
+                    const { createPrazo } = await import('../../services/supabase');
+                    const res = await createPrazo(payload);
+                    if (res.error) return { error: res.error };
+                    await reload();
+                    return { error: null };
+                } catch (err) {
+                    return { error: err };
+                }
+            }
+        });
+    };
+
     return (
         <div className="animation-fade-in" style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
             <PrazosHeader
@@ -65,6 +84,7 @@ export const Prazos: React.FC = () => {
                 onChangeFiltroDataInicio={setFiltroDataInicio}
                 filtroDataFim={filtroDataFim}
                 onChangeFiltroDataFim={setFiltroDataFim}
+                onAddClick={handleAdd}
             />
 
             <div

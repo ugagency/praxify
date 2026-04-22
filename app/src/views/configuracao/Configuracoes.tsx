@@ -186,7 +186,7 @@ export const Configuracoes: React.FC = () => {
         try {
             const meta = {
                 escritorio_id: escritorio.id,
-                processo: null,
+                processo_id: null,
                 usuario_id: null,
                 tipo: 'IMAGEM',
                 descricao: 'LOGO_OFICIAL'

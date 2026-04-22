@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import type { PrazoFiltro } from '../hooks/usePrazosState';
 
 type Props = {
@@ -10,13 +10,15 @@ type Props = {
     onChangeFiltroDataInicio: (v: string) => void;
     filtroDataFim: string;
     onChangeFiltroDataFim: (v: string) => void;
+    onAddClick?: () => void;
 };
 
 export const PrazosHeader: React.FC<Props> = ({
     filtro, onChangeFiltro,
     busca, onChangeBusca,
     filtroDataInicio, onChangeFiltroDataInicio,
-    filtroDataFim, onChangeFiltroDataFim
+    filtroDataFim, onChangeFiltroDataFim,
+    onAddClick
 }) => {
     const filtros = [
         { key: 'hoje', label: 'Hoje', bg: 'rgba(16,185,129,0.22)', border: 'rgba(16,185,129,0.55)' },
@@ -40,11 +42,37 @@ export const PrazosHeader: React.FC<Props> = ({
                 padding: '1.1rem'
             }}
         >
-            <div>
-                <h3 style={{ margin: 0, color: 'var(--text-main)' }}>Tarefas e Compromissos</h3>
-                <p style={{ color: 'var(--text-muted)', margin: '0.25rem 0 0 0', fontSize: '0.85rem' }}>
-                    Gerenciamento de datas fatais e compromissos
-                </p>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1.2rem' }}>
+                <button
+                    onClick={onAddClick}
+                    style={{
+                        width: '42px',
+                        height: '42px',
+                        borderRadius: '12px',
+                        background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+                        border: 'none',
+                        color: '#fff',
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        boxShadow: '0 4px 12px rgba(16,185,129,0.35)',
+                        transition: 'all 0.2s ease',
+                        flexShrink: 0
+                    }}
+                    title="Adicionar Novo Prazo"
+                >
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                </button>
+                <div>
+                    <h3 style={{ margin: 0, color: 'var(--text-main)' }}>Tarefas e Compromissos</h3>
+                    <p style={{ color: 'var(--text-muted)', margin: '0.25rem 0 0 0', fontSize: '0.85rem' }}>
+                        Gerenciamento de datas fatais e compromissos
+                    </p>
+                </div>
             </div>
 
             <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', alignItems: 'center' }}>

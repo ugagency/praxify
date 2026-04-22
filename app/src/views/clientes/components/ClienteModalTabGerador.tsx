@@ -69,6 +69,7 @@ export const ClienteModalTabGerador: React.FC<Props> = ({ clienteId, escritorioI
         }
 
         setGerando(true);
+        showLoading("Gerando Petição...", "A inteligência artificial está redigindo o documento. Isso pode levar alguns segundos.");
         try {
             const variaveis = {
                 cliente_nome: dadosCliente?.nome || "Nome não informado",
@@ -84,7 +85,9 @@ export const ClienteModalTabGerador: React.FC<Props> = ({ clienteId, escritorioI
             const resposta = await gerarTextoComIA(promptPronto);
             setTextoGerado(resposta);
             setArquivoSendoEditado(null); // Ao gerar nova pela IA, resetamos o vínculo de edição
+            closeAlert();
         } catch (error: any) {
+            closeAlert();
             showAlert("Erro", error?.message || "Erro ao gerar petição", "error");
         } finally {
             setGerando(false);

@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAppStore } from '../../core/store';
 import { logout } from '../../services/auth';
@@ -47,13 +47,51 @@ export const Sidebar: React.FC<{ isOpen: boolean, closeSidebar: () => void }> = 
         return user.permissions.includes(perm);
     };
 
+    const [logoUrl, setLogoUrl] = React.useState<string | null>(null);
+
+    React.useEffect(() => {
+        if (!escritorio?.id) return;
+        const fetchLogo = async () => {
+            try {
+                const { getClient } = await import('../../services/supabase');
+                const client = getClient();
+                const { data } = await client
+                    .from('Jur_Arquivos')
+                    .select('url')
+                    .eq('escritorio_id', escritorio.id)
+                    .eq('descricao', 'LOGO_OFICIAL')
+                    .order('criado_em', { ascending: false })
+                    .limit(1)
+                    .maybeSingle();
+
+                if (data?.url) setLogoUrl(data.url);
+            } catch (err) {
+                console.error("Erro ao carregar logo no sidebar", err);
+            }
+        };
+        fetchLogo();
+    }, [escritorio?.id]);
+
     return (
         <aside className={`sidebar ${isOpen ? 'open' : ''}`}>
             <div className="brand">
-                <div className="brand-icon">OA</div>
+                <div className="brand-icon" style={logoUrl ? { background: 'transparent', boxShadow: 'none', padding: 0 } : {}}>
+                    {logoUrl ? (
+                        <img src={logoUrl} alt="Logo" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                    ) : (
+                        "OA"
+                    )}
+                </div>
                 <div className="brand-text">
                     <h1>PRAXIFY</h1>
-                    <p>Paralegal Digital</p>
+                    <p style={{
+                        whiteSpace: 'nowrap',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                        maxWidth: '150px'
+                    }} title={escritorio?.nome || 'Escritório'}>
+                        {escritorio?.nome || 'Escritório'}
+                    </p>
                 </div>
             </div>
 

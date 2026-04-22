@@ -330,8 +330,7 @@ export const ProcessoModal: React.FC<Props> = ({
                                 <option value="ATIVO">Ativo</option>
                                 <option value="PRE_PROCESSUAL">Pré-Processual</option>
                                 <option value="ARQUIVADO">Arquivado</option>
-                                <option value="RECURSO">Em Recurso</option>
-                                <option value="OUTROS">Outros</option>
+                                <option value="SUSPENSO">Suspenso</option>
                             </select>
                         </div>
 

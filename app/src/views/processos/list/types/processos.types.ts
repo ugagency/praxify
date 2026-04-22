@@ -3,8 +3,7 @@ export type ProcessoStatus =
     | "ATIVO"
     | "ARQUIVADO"
     | "PRE_PROCESSUAL"
-    | "RECURSO"
-    | "OUTROS"
+    | "SUSPENSO"
     | string;
 
 export interface Processo {

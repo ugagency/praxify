@@ -76,10 +76,7 @@ async function chamarGeminiAPI(prompt) {
             }]
         }],
         generationConfig: {
-            temperature: 0.3, // Baixa criatividade, mais consistente
-            maxOutputTokens: 2048,
-            topP: 0.8,
-            topK: 10
+            temperature: 0.3
         }
     };
 
@@ -117,11 +114,15 @@ async function chamarGeminiAPI(prompt) {
             throw new Error('Resposta vazia da API');
         }
 
-        // Parse do JSON retornado
-        // Remover markdown se houver (```json ... ```)
-        let jsonText = textoResposta.trim();
-        if (jsonText.startsWith('```')) {
-            jsonText = jsonText.replace(/```json\n?/g, '').replace(/```\n?/g, '');
+        let jsonText = textoResposta;
+        const startIdx = jsonText.indexOf('{');
+        const endIdx = jsonText.lastIndexOf('}');
+        
+        if (startIdx !== -1 && endIdx !== -1) {
+            jsonText = jsonText.substring(startIdx, endIdx + 1);
+        } else {
+            const preview = JSON.stringify(data.candidates[0]).substring(0, 300);
+            throw new Error(`Truncado ou Incompleto. FinishReason: ${data.candidates[0]?.finishReason}. Preview: ${preview}...`);
         }
 
         const resultado = JSON.parse(jsonText);

@@ -1,4 +1,5 @@
 import React from "react";
+import { showAlert } from "../../../../utils/alert";
 
 function Action(props: { label: string; hint?: string; icon: string; variant: "primary" | "neutral" | "danger"; onClick?: () => void }) {
     const { label, hint, icon, variant, onClick } = props;
@@ -69,14 +70,14 @@ export const ProcessoAcoesCard: React.FC<ProcessoAcoesCardProps> = ({ isArquivad
                     label="Analisar fatos (IA)"
                     hint="Resumo e pontos-chave do caso"
                     variant="primary"
-                    onClick={() => { }}
+                    onClick={() => { showAlert('Em desenvolvimento', 'Esta funcionalidade estará disponível em breve.', 'info'); }}
                 />
                 <Action
                     icon="📄"
                     label="Gerar documento"
                     hint="Petição, notificação, contrato"
                     variant="neutral"
-                    onClick={() => { }}
+                    onClick={() => { showAlert('Em desenvolvimento', 'Esta funcionalidade estará disponível em breve.', 'info'); }}
                 />
                 <Action
                     icon="📎"

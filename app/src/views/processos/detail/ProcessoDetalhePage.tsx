@@ -1,4 +1,4 @@
-﻿import React, { useMemo } from "react";
+import React, { useMemo } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAppStore } from "../../../core/store";
 import { updateProcessoStatus } from "../list/api/processos.api";
@@ -37,11 +37,11 @@ export const ProcessoDetalhePage: React.FC = () => {
     const [usuarios, setUsuarios] = React.useState<Usuario[]>([]);
 
     React.useEffect(() => {
-        if (isEditModalOpen && escritorio) {
+        if (escritorio) {
             fetchClientes(escritorio.id).then(res => setClientes(res.data || []));
             fetchUsuarios(String(escritorio.id)).then(res => setUsuarios(res.data || []));
         }
-    }, [isEditModalOpen, escritorio]);
+    }, [escritorio]);
 
     const handleSaveEdit = async (form: ProcessoFormState) => {
         if (!escritorio || !processo) return;
@@ -310,6 +310,9 @@ export const ProcessoDetalhePage: React.FC = () => {
                                 prazos={prazos}
                                 processoId={processo.id}
                                 processoLabel={String(processo.numero_autos || processo.id)}
+                                usuarios={usuarios}
+                                onReload={() => reload?.()}
+                                escritorioId={escritorio.id}
                             />
 
                             <ProcessoDocumentosCard

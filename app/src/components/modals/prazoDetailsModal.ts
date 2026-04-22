@@ -1,4 +1,4 @@
-﻿import Swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 
 export type ProcessoLike = {
   id: number | string;
@@ -29,6 +29,8 @@ type Options = {
 function statusMeta(status: string) {
   const s = (status || '').toUpperCase();
   if (s === 'FEITO') return { label: 'FEITO', cls: 'pill-feito' };
+  if (s === 'EM ANDAMENTO') return { label: 'EM ANDAMENTO', cls: 'pill-em-andamento' };
+  if (s) return { label: s, cls: 'pill-pendente' };
   return { label: 'PENDENTE', cls: 'pill-pendente' };
 }
 
@@ -262,6 +264,7 @@ export async function openPrazoDetailsModal({
         white-space: nowrap;
       }
       .pill-feito { border-color: rgba(16,185,129,0.35); color: #a7f3d0; background: rgba(16,185,129,0.10); }
+      .pill-em-andamento { border-color: rgba(59,130,246,0.35); color: #bfdbfe; background: rgba(59,130,246,0.10); }
       .pill-pendente { border-color: rgba(245,158,11,0.35); color: #fde68a; background: rgba(245,158,11,0.10); }
 
       .swal-modal-custom {

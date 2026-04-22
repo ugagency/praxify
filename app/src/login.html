@@ -312,16 +312,49 @@
             });
 
             // RECUPERAR SENHA
-            forgotPasswordLink.addEventListener('click', function (e) {
+            forgotPasswordLink.addEventListener('click', async function (e) {
                 e.preventDefault();
-                Swal.fire({
-                    title: 'Atenção',
-                    text: 'Funcionalidade de recuperação de senha em desenvolvimento.\n\nEntre em contato com o administrador do sistema.',
-                    icon: 'info',
+                const { value: email } = await Swal.fire({
+                    title: 'Recuperar Senha',
+                    input: 'email',
+                    inputLabel: 'Informe seu endereço de email',
+                    inputPlaceholder: 'seu@email.com',
+                    showCancelButton: true,
+                    cancelButtonText: 'Cancelar',
+                    confirmButtonText: 'Enviar Link',
                     background: '#0b1220',
                     color: '#f0f4f8',
-                    confirmButtonColor: '#00d9ff'
+                    confirmButtonColor: '#00d9ff',
+                    cancelButtonColor: '#1e293b'
                 });
+
+                if (email) {
+                    try {
+                        const { error } = await client.auth.resetPasswordForEmail(email, {
+                            redirectTo: window.location.origin + '/src/reset-password.html'
+                        });
+
+                        if (error) throw error;
+
+                        Swal.fire({
+                            title: 'Email Enviado!',
+                            text: 'Verifique sua caixa de entrada para redefinir sua senha.',
+                            icon: 'success',
+                            background: '#0b1220',
+                            color: '#f0f4f8',
+                            confirmButtonColor: '#00d9ff'
+                        });
+                    } catch (error) {
+                        Swal.fire({
+                            title: 'Erro',
+                            text: 'Ocorreu um erro ao enviar o email. Tente novamente mais tarde.',
+                            icon: 'error',
+                            background: '#0b1220',
+                            color: '#f0f4f8',
+                            confirmButtonColor: '#00d9ff'
+                        });
+                    }
+                }
             });
 
             emailInput.focus();
